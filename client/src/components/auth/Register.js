@@ -26,16 +26,16 @@ export default class Register extends Component {
     }
     handleSubmit=(event)=>{
         event.preventDefault();
-        console.log(this.state.date_joined);
+      //  console.log(this.state.date_joined);
         var d = new Date(this.state.date_joined);
         var n = d.toISOString();
-        console.log(this.state.last_login);
+      //  console.log(this.state.last_login);
         var d = new Date(this.state.last_login);
         var p = d.toISOString();
   
 
-        console.log("this.state.last_login",p);
-        console.log("this.state.last_login",n);
+       // console.log("this.state.last_login",p);
+        //console.log("this.state.last_login",n);
         
         var obj=
         
@@ -58,14 +58,14 @@ export default class Register extends Component {
       
         if(obj){
           var name=localStorage.getItem("name");
-          console.log("name is",name,"  ",`https://${name}.api.convin.ai/persons/create_admin/`);
+         // console.log("name is",name,"  ",`https://${name}.api.convin.ai/persons/create_admin/`);
          var pr= axios.post(`https://${name}.api.convin.ai/persons/create_admin/`,obj   );
        
         pr.then(data=>{
-            console.log("Successfull",data);
+            //console.log("Successfull",data);
         
       if(data.data.status=="success" && data.data.message==="success"){
-         console.log("true");
+       //  console.log("true");
            this.setState({message:"Congratulations, Sign up Successfull." })  
         
      }
@@ -76,7 +76,7 @@ export default class Register extends Component {
   
     
         }).catch(err=>{
-   console.log("err is",err)
+  // console.log("err is",err)
         }).finally(function () {
             // always executed
             console.log("always executed");
@@ -86,14 +86,14 @@ export default class Register extends Component {
          
         }
         else{
-            console.log("Empty");
+         //   console.log("Empty");
             this.setState({message:"Please Fill the fields!"})
         }
        
     }
     handleChange=(event)=>{
         this.setState({ [event.target.name]:event.target.value},()=>{
-            console.log(this.state)
+            //console.log(this.state)
         })
 
     }

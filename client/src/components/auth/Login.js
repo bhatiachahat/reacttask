@@ -17,7 +17,7 @@ export default class Login extends Component {
     }
     handleChange=(event)=>{
         this.setState({ [event.target.name]:event.target.value},()=>{
-            console.log(this.state)
+           // console.log(this.state)
         })
 
     }
@@ -27,20 +27,26 @@ export default class Login extends Component {
             'username':this.state.username,
             'password':this.state.password
         }
-        console.log("username is",obj.username," and ","password is",obj.password);
+        //console.log("username is",obj.username," and ","password is",obj.password);
         
         
         if(obj){
-            console.log("obj is",obj," ",this.state.username," ",this.state.password);
+         //   console.log("obj is",obj," ",this.state.username," ",this.state.password);
       
         var name=localStorage.getItem("name");
-        console.log("name is",name)
-            var pr= axios.post(`https://${name}.api.convin.ai/persons/get_token/`,obj);
+       // console.log("name is",name," ",localStorage.getItem("name"))
+        if(!localStorage.getItem("name")){
+          this.setState({message:"Please create sub-domain to login!" })  
+        }
+            else if(localStorage.getItem("name"))
+            {var pr= axios.post(`https://${name}.api.convin.ai/persons/get_token/`,obj);
         
             pr.then(data=>{
-                console.log("Successfull",data);
+           //     console.log("Successfull",data);
               
          if(data.data.token && data.status===200 ){
+           localStorage.setItem("token",data.data.token);
+          
               /// console.log("true");
                 this.setState({message:"Logged in Successfully." })  
                 setTimeout(
@@ -73,7 +79,7 @@ export default class Login extends Component {
         else{
             console.log("Empty");
            // this.setState({message:"Please Fill the fields!"})
-        }
+        }}
        
 
     }

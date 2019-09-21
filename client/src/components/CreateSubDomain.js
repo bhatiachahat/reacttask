@@ -16,7 +16,7 @@ available:false
     }
     handleChange=(event)=>{
         this.setState({ [event.target.name]:event.target.value},()=>{
-            console.log(this.state)
+           // console.log(this.state)
         })
 
     }
@@ -29,13 +29,13 @@ available:false
         );
        
        pr.then(data=>{
-           console.log("Successfull",data);
+           //console.log("Successfull",data);
          
      if(data.data.status==="success" && data.data.available ){
-           console.log("true");
+          // console.log("true");
            this.setState({message:"Subdomain available.",available:true })  
            localStorage.setItem('name',(this.state.subdomain));
-           console.log("domain created ",localStorage.getItem("name"));
+          // console.log("domain created ",localStorage.getItem("name"));
       
        }
        else if(!data.data.available){
@@ -46,17 +46,17 @@ available:false
     
    
        }).catch(err=>{
-  console.log("err is",err)
+  //console.log("err is",err)
        }).finally(function () {
            // always executed
-           console.log("always executed");
+         //  console.log("always executed");
           
          })
        
         
        }
        else{
-           console.log("Empty");
+          // console.log("Empty");
            this.setState({message:"Please Fill the fields!"})
        }
       
@@ -73,10 +73,10 @@ available:false
          );
          
         pr.then(data=>{
-            console.log("Successfull",data);
+          //  console.log("Successfull",data);
           
       if(data.data.status=="success" && data.data.message==="success" && data.status===201 ){
-           console.log("true");
+         //  console.log("true");
             this.setState({message:"Subdomain created." })  
         
        }
@@ -88,17 +88,17 @@ available:false
      
     
         }).catch(err=>{
-   console.log("err is",err)
+ //  console.log("err is",err)
         }).finally(function () {
             // always executed
-            console.log("always executed");
+           // console.log("always executed");
            
           })
         
          
         }
         else{
-            console.log("Empty");
+           // console.log("Empty");
             this.setState({message:"Please Fill the fields!"})
         }
        

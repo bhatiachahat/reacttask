@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {Bar,Line,Pie} from 'react-chartjs-2';
+import { Redirect } from  "react-router-dom";
 
 export default class Dashboard extends Component {
     constructor(props){
         super(props)
         this.state={
+            token:localStorage.getItem("token"),
             chartData:{
                 labels:['January','February','March','April'
                 ],
@@ -31,6 +33,12 @@ export default class Dashboard extends Component {
         }
     }
     render() {
+        if(!this.state.token){
+            return(
+                <Redirect to='/login' />
+            )
+           
+        }
         return (
             <div className="container">
                             <Bar
