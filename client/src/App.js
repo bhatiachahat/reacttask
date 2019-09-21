@@ -8,6 +8,7 @@ import Register from './components/auth/Register'
 import CreateSubDomain from './components/CreateSubDomain'
 import {DomainProvider} from './context/Domaincontext'; 
 import Dashboard from './components/user/Dashboard'
+import Error from './components/layouts/Error'
 import './App.css';
 
 function App() {
@@ -19,15 +20,16 @@ function App() {
 
       <Navbar/>
   <Route exact path="/"  component={CreateSubDomain} />
+  <Route exact path="/home" component={Landing} /> 
   <div className="container">
   
    <Route exact path="/login" component={Login} />
    <Route exact path="/register" component={Register} /> 
-   <Route exact path="/home" component={Landing} /> 
+   
    <Route exact path="/dashboard" component={Dashboard} /> 
 
   </div>
-  <Footer/>
+  {/* <Footer/> */}
   
   {/* <Route component={Error}/> */}
   
