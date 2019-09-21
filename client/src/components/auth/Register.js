@@ -59,31 +59,62 @@ export default class Register extends Component {
         if(obj){
           var name=localStorage.getItem("name");
          // console.log("name is",name,"  ",`https://${name}.api.convin.ai/persons/create_admin/`);
-         var pr= axios.post(`https://${name}.api.convin.ai/persons/create_admin/`,obj   );
-       
-        pr.then(data=>{
-            //console.log("Successfull",data);
-        
-      if(data.data.status=="success" && data.data.message==="success"){
-       //  console.log("true");
-           this.setState({message:"Congratulations, Sign up Successfull." })  
-        
-     }
-      else {
-       this.setState({message:"Error in register!" })  
-       }
-            
-  
-    
-        }).catch(err=>{
-  // console.log("err is",err)
-        }).finally(function () {
-            // always executed
-            console.log("always executed");
+         if(!localStorage.getItem("name")){
            
-          })
+          var pr= axios.post(`https://app.api.convin.ai/persons/create_admin/`,obj   );
+       
+          pr.then(data=>{
+              console.log("Successfull",data);
+          
+        if(data.data.status=="success" && data.data.message==="success"){
+         //  console.log("true");
+             this.setState({message:"Congratulations, Sign up Successfull." })  
+          
+       }
+        else {
+         this.setState({message:"Error in register!" })  
+         }
+              
+    
+      
+          }).catch(err=>{
+    console.log("err is",err)
+    this.setState({message:"Error in register!" })
+          }).finally(function () {
+              // always executed
+              console.log("always executed");
+             
+            })
+         }
+         else if(localStorage.getItem("name")){
+          var pr= axios.post(`https://${name}.api.convin.ai/persons/create_admin/`,obj   );
+       
+          pr.then(data=>{
+              //console.log("Successfull",data);
+          
+        if(data.data.status=="success" && data.data.message==="success"){
+         //  console.log("true");
+             this.setState({message:"Congratulations, Sign up Successfull." })  
+          
+       }
+        else {
+         this.setState({message:"Error in register!" })  
+         }
+              
+    
+      
+          }).catch(err=>{
+    // console.log("err is",err)
+          }).finally(function () {
+              // always executed
+              console.log("always executed");
+             
+            })
+          
+           
+
+         }
         
-         
         }
         else{
          //   console.log("Empty");

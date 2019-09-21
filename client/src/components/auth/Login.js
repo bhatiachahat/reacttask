@@ -36,7 +36,40 @@ export default class Login extends Component {
         var name=localStorage.getItem("name");
        // console.log("name is",name," ",localStorage.getItem("name"))
         if(!localStorage.getItem("name")){
-          this.setState({message:"Please create sub-domain to login!" })  
+          var pr= axios.post(`https://app.api.convin.ai/persons/get_token/`,obj);
+        
+          pr.then(data=>{
+         //     console.log("Successfull",data);
+            
+       if(data.data.token && data.status===200 ){
+         localStorage.setItem("token",data.data.token);
+        
+            /// console.log("true");
+              this.setState({message:"Logged in Successfully." })  
+              setTimeout(
+                function() {
+                    this.setState({toDashboard:true});
+                }
+                .bind(this),
+                2000);
+       
+        }
+         else {
+          this.setState({message:"Error while login!" })  
+         }
+              
+          
+  
+      
+          }).catch(err=>{
+     console.log("err is",err)
+     this.setState({message:"Error in login!" })
+          }).finally(function () {
+              // always executed
+              console.log("always executed");
+             
+            })
+          
         }
             else if(localStorage.getItem("name"))
             {var pr= axios.post(`https://${name}.api.convin.ai/persons/get_token/`,obj);
